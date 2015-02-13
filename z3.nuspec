@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if ??? doesn?t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>z3</id>
+    <title>Z3 Theorem Prover</title>
+    <version>4.3.2</version>
+    <authors>Microsoft Research</authors>
+    <owners>yying</owners>
+    <summary>Z3 is a high-performance theorem prover being developed at Microsoft Research.</summary>
+    <description>Z3 is a high-performance theorem prover being developed at Microsoft Research.</description>
+    <projectUrl>http://z3.codeplex.com/</projectUrl>
+    <tags>z3 smt solver smtlib theorem prover constraint</tags>
+    <copyright>Copyright (c) 2006-2015 Microsoft</copyright>
+    <licenseUrl>http://z3.codeplex.com/license</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://cdn.rawgit.com/yying/z3-chocolatey/master/z3.png</iconUrl>
+    <dependencies>
+    </dependencies>
+    <releaseNotes>- Added preliminary support for the theory of floating point numbers (tactics qffpa, qffpabv, and logics QF_FPA, QF_FPABV).
+- Added the interpolation features of iZ3, which are now integrated into the Z3. 
+- Fixed a multitude of bugs and inconsistencies that were reported to us either in person, by email, or on Codeplex. Of those that we do have records of, we would like to express our gratitude to:
+    Vladimir Klebanov, Konrad Jamrozik, Nuno Lopes, Carsten Ruetz, Esteban Pavese, Tomer Weiss, Ilya Mironov, Gabriele Paganelli, Levent Erkok, Fabian Emmes, David Cok, Etienne Kneuss, Arlen Cox, Matt Lewis, Carsten Otto, Paul Jackson, David Monniaux, Markus Rabe, Martin Pluecker, Jasmin Blanchette, Jules Villard, Andrew Gacek, George Karpenkov, Joerg Pfaehler, and Pablo Aledo
+    as well as the following Codeplex users that either reported bugs or took part in discussions:
+xor88, parno, gario, Bauna, GManNickG, hanwentao, dinu09, fhowar, Cici, chinissai, barak_cohen, tvalentyn, krikunts, sukyoung, daramos, snedunuri, rajtendulkar, sonertari, nick8325, dvitek, amdragon, Beatgodes, dmonniaux, nickolai, DameNingen, mangpo, ttsiodras, blurium, sbrickey, pcodemod, indranilsaha, apanda, hougaardj, yoff, EfForEffort, Ansotegui, scottgw, viorelpreoteasa, idudka, c2855337, gario, jnfoster, omarmrivas, switicus, vosandi, foens, yzwwf, Heizmann, znajem, ilyagri, hougaardj, cliguda, rgrig, 92c849c1ccc707173, edmcman, cipher1024, MichaelvW, hellok, n00b42, ic3guy, Adorf, tvcsantos, zilongwang, Elarnon, immspw, jbridge99, danliew, zverlov, petross, jmh93, dradorf, fniksic, Heyji, cxcfan, henningg, wxlfrank, rvprasad, MovGP0, jackie1015, cowang, ffaghih, sanpra1989, gzchenyin, baitman, xjtulixiangyang, andreis, trucnguyenlam, erizzi, hanhchi, qsp, windypan, vadave, gradanne, SamWot, gsingh93, manjeetdahiya, zverlov, RaLa, and regehr.
+- New parameter setting infrastructure. Now, it is possible to set parameter for Z3 internal modules. Several parameter names changed. Execute `z3 -p` for the new parameter list.
+- Added get_version() and get_version_string() to Z3Py
+- Added support for FreeBSD. Z3 can be compiled on FreeBSD using g++. 
+- Added support for Python 3.x.
+- Reverted to `(set-option :global-decls false)` as the default. In Z3 4.3.0 and Z3 4.3.1, this option was set to true.
+  Thanks to Julien Henry for reporting this problem.
+- Added `doc` directory and scripts for automatically generating the API documentation.
+- Removed 'autoconf' dependency. We do not need to execute 'autoconf' and './configure' anymore to build Z3.
+- Fixed incorrect result returned by Z3_solver_get_num_scopes. (Thanks to Herman Venter). This bug was introduced in Z3 4.3.0
+- Java bindings. To enable them, we must use the option `--java` when executing the `mk_make.py` script. Example: `python scripts/mk_make.py --java`
+- Fixed crash when parsing incorrect formulas. The crash was introduced when support for "arithmetic coercions" was added in Z3 4.3.0.
+- Added new option to mk_make to allow users to specify where python bindings (Z3Py) will be installed. (Thanks to Dejan Jovanovic for reporting the problem).
+- Fixed crash reported at http://z3.codeplex.com/workitem/10
+- Removed auxiliary constants created by the nnf tactic from Z3 models.
+- Fixed problem in the pretty printer. It was not introducing quotes for attribute names such as |foo:10|.
+- Fixed bug when using assumptions (Thanks to Philippe Suter and Etienne Kneuss)
+  Consider the following example:
+      (assert F)
+      (check-sat a)
+      (check-sat)
+  If 'F' is unstatisfiable independently of the assumption 'a', and 
+  the inconsistenty can be detected by just performing propagation,
+  Then, version&lt;= 4.3.1 may return
+      unsat
+      sat
+  instead of
+      unsat
+      unsat
+  We say may because 'F' may have other unsatisfiable cores.
+- Fixed bug reported at http://stackoverflow.com/questions/13923316/unprintable-solver-model
+- Fixed timers on Linux and FreeBSD.
+- Fixed crash reported at http://z3.codeplex.com/workitem/11.
+- Fixed bug reported at http://stackoverflow.com/questions/14307692/unknown-when-using-defs
+- Relax check_logic procedure. Now, it accepts coercions (to_real) automatically introduced by Z3. (Thanks to Paul Jackson). This is a fix for http://z3.codeplex.com/workitem/19.
+- Fixed http://stackoverflow.com/questions/14524316/z3-4-3-get-complete-model.
+- Fixed bugs in the C++ API (Thanks to Andrey Kupriyanov).
+- Fixed bug reported at http://z3.codeplex.com/workitem/23 (Thanks to Paul Jackson).
+- Fixed bug reported at http://stackoverflow.com/questions/15226944/segmentation-fault-in-z3 (Thanks to Tianhai Liu).
+</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
